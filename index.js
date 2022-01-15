@@ -38,12 +38,3 @@ let actionApplyer = function(startingInteger, arrayOfTransforms) {
     return startingInteger;
 }
 
-function demoChain(name) {
-    let part1 = 'hi'
-    return function() {
-      let part2 = 'there'
-      return function() { // Innermost
-        console.log(`${part1.toUpperCase()} ${part2} ${name}`);
-      }
-    }
-  }
