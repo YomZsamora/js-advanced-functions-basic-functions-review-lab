@@ -18,23 +18,19 @@ let wrapAdjective = function(visualFlairString = '*') {
 // JavaScript Object called Calculator that has functions add, substract, multiply and divide.
 let Calculator = {
     add: function() { return 1 + 3 },
-    subtract: function() { return 1-3 }, 
+    subtract: function() { return 1 - 3 }, 
     multiply: function() { return 1 * 3 },
     divide: function() { return 10 / 5 }
 }
 
 let actionApplyer = function(startingInteger, arrayOfTransforms) {
     if(arrayOfTransforms[0]) {
-        return function() {
-            let multiply = arrayOfTransforms[0](startingInteger);
-            return function() {
-                let addition = arrayOfTransforms[1](multiply);
-                return function() {
-                    return arrayOfTransforms[2](addition)
-                }
-            }
-        }
+        let multiply = arrayOfTransforms[0](startingInteger);
+        let addition = arrayOfTransforms[1](multiply);
+        return arrayOfTransforms[2](addition);
     }
-    return startingInteger;
+    else {
+        return startingInteger;
+    }
 }
 
