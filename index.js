@@ -15,10 +15,35 @@ let wrapAdjective = function(visualFlairString = '*') {
     }
 }
 
-// JavaScript Object called Calculator
+// JavaScript Object called Calculator that has functions add, substract, multiply and divide.
 let Calculator = {
     add: function() { return 1 + 3 },
     subtract: function() { return 1-3 }, 
     multiply: function() { return 1 * 3 },
     divide: function() { return 10 / 5 }
 }
+
+let actionApplyer = function(startingInteger, arrayOfTransforms) {
+    if(arrayOfTransforms[0]) {
+        return function() {
+            let multiply = arrayOfTransforms[0](startingInteger);
+            return function() {
+                let addition = arrayOfTransforms[1](multiply);
+                return function() {
+                    return arrayOfTransforms[2](addition)
+                }
+            }
+        }
+    }
+    return startingInteger;
+}
+
+function demoChain(name) {
+    let part1 = 'hi'
+    return function() {
+      let part2 = 'there'
+      return function() { // Innermost
+        console.log(`${part1.toUpperCase()} ${part2} ${name}`);
+      }
+    }
+  }
